@@ -87,51 +87,7 @@ public class EmployeeManagementSystem {
 // test case are executed properly 
 
 
-    public static void removeEmployee(int id) {
-        for (Employee emp : employees) {
-            if (emp.id == id) {
-                employees.remove(emp);
-                System.out.println("Employee ID " + id + " removed successfully.");
-                return;
-            }
-        }
-        System.out.println("Error: Employee ID " + id + " not found.");
-    }
-
-    public static void searchEmployee(int id) {
-        for (Employee emp : employees) {
-            if (emp.id == id) {
-                System.out.println("Employee Found: ID=" + emp.id + ", Name=" + emp.name + ", Salary=" + emp.salary);
-                return;
-            }
-        }
-        System.out.println("Error: Employee ID " + id + " not found.");
-    }
-
-    public static void displayEmployees() {
-        if (employees.isEmpty()) {
-            System.out.println("No employees found.");
-        } else {
-            for (Employee emp : employees) {
-                System.out.println("ID: " + emp.id + ", Name: " + emp.name + ", Salary: " + emp.salary);
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-        // Test Cases
-        displayEmployees(); // Test Case 1
-        addEmployee(101, "Anish", 50000); // Test Case 2
-        addEmployee(102, "Bobby", 60000); // Test Case 2
-        updateEmployee(101, 55000); // Test Case 3
-        searchEmployee(102); // Test Case 4
-        removeEmployee(101); // Test Case 5
-        displayEmployees(); // Test Case 6
-        addEmployee(101, "Charlie", 70000);
-        addEmployee(101, "Charlie", 70000);// Test Case 7 duplicacy case
-        displayEmployees();
-    }
-}
+   
 
 
 
