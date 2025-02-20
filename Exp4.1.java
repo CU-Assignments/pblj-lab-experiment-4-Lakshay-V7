@@ -1,60 +1,93 @@
-Experiment 4.1: Employee Management System
+import java.util.ArrayList;
+import java.util.Scanner;
 
-The Employee Management System is a simple Java-based application that uses ArrayList to manage employee records. The system allows users to perform the following operations:
+class Employee {
+    int id;
+    String name;
+    double salary;
 
-Add Employee → Store Employee ID, Name, and Salary.
+    Employee(int id, String name, double salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    }
+}
+// lakshay uid 22BCS15481
+public class EmployeeManagementSystem {
+    private static final ArrayList<Employee> employees = new ArrayList<>();
+    private static final Scanner scanner = new Scanner(System.in);
 
-Update Employee → Modify employee details based on their ID.
+    public static void addEmployee(int id, String name, double salary) {
+        for (Employee emp : employees) {
+            if (emp.id == id) {
+                System.out.println("Error: Employee with ID " + id + " already exists.");
+                return;
+            }
+        }
+        employees.add(new Employee(id, name, salary));
+        System.out.println("Employee Added: ID=" + id + ", Name=" + name + ", Salary=" + salary);
+    }
 
-Remove Employee → Delete an employee using their ID.
+    public static void updateEmployee(int id, double newSalary) {
+        for (Employee emp : employees) {
+            if (emp.id == id) {
+                emp.salary = newSalary;
+                System.out.println("Employee ID " + id + " updated successfully.");
+                return;
+            }
+        }
+        System.out.println("Error: Employee ID " + id + " not found.");
+    }
 
-Search Employee → Find employees by ID or Name.
+    public static void removeEmployee(int id) {
+        for (Employee emp : employees) {
+            if (emp.id == id) {
+                employees.remove(emp);
+                System.out.println("Employee ID " + id + " removed successfully.");
+                return;
+            }
+        }
+        System.out.println("Error: Employee ID " + id + " not found.");
+    }
 
-Display All Employees → Show a complete list of employees.
+    public static void searchEmployee(int id) {
+        for (Employee emp : employees) {
+            if (emp.id == id) {
+                System.out.println("Employee Found: ID=" + emp.id + ", Name=" + emp.name + ", Salary=" + emp.salary);
+                return;
+            }
+        }
+        System.out.println("Error: Employee ID " + id + " not found.");
+    }
 
-Test Cases
+    public static void displayEmployees() {
+        if (employees.isEmpty()) {
+            System.out.println("No employees found.");
+        } else {
+            for (Employee emp : employees) {
+                System.out.println("ID: " + emp.id + ", Name: " + emp.name + ", Salary: " + emp.salary);
+            }
+        }
+    }
 
-Test Case 1: Adding Employees (No Employees Initially)
-Display Employees
-Expected Output:
-No employees found.
-  
-Test Case 2: Add Employees
-Input:
-Add Employee (ID=101, Name="Anish", Salary=50000)
-Add Employee (ID=102, Name="Bobby", Salary=60000)
-Expected Output:
-Employee Added: ID=101, Name=Anish, Salary=50000
-Employee Added: ID=102, Name=Bobby, Salary=60000
+    public static void main(String[] args) {
+        // Test Cases
+        displayEmployees(); // Test Case 1
+        addEmployee(101, "Anish", 50000); // Test Case 2
+        addEmployee(102, "Bobby", 60000); // Test Case 2
+        updateEmployee(101, 55000); // Test Case 3
+        searchEmployee(102); // Test Case 4
+        removeEmployee(101); // Test Case 5
+        displayEmployees(); // Test Case 6
+        addEmployee(101, "Charlie", 70000);
+        addEmployee(101, "Charlie", 70000);// Test Case 7 duplicacy case
+        displayEmployees();
+    }
+}
+// test case are executed properly 
 
-Test Case 3: Update Employee Salary
-Input:
-Update Employee (ID=101, New Salary=55000)
-Expected Output:
-Employee ID 101 updated successfully.
 
-Test Case 4: Search Employee by ID
-Input:
-Search Employee by ID=102
-Expected Output:
-Employee Found: ID=102, Name=Bobby, Salary=60000
+   
 
-Test Case 5: Remove Employee
-Input:
-Remove Employee (ID=101)
-Expected Output:
-Employee ID 101 removed successfully.
-
-Test Case 6: Display All Employees
-Input:
-Display Employees
-Expected Output:
-ID: 102, Name: Bobby, Salary: 60000
-
-Test Case 7: Adding Duplicate Employee ID
-Input:
-Add Employee (ID=101, Name="Charlie", Salary=70000)
-Expected Output:
-Error: Employee with ID 101 already exists.
 
 
